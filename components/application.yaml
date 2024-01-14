@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Fla app
+  namespace: openshift-gitops 
+  finalizers: ["resources-finalizer.argocd.argoproj.io"] 
+spec:
+  project: default
+  source:
+    path: components/overlays/development
+    repoURL: github.com?owner=flacatus&repo=test-sample
+    targetRevision: main
+  destination:
+    namespace: local 
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

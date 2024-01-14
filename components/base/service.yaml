@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app.kubernetes.io/instance: Fla app
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: Fla app 
+  name: Fla app
+  namespace: local 
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: Fla app 
